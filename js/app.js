@@ -32,8 +32,17 @@ function sortear() {
             return;
         }
         item.textContent = `${amigo} -> ${listaAmigos[index + 1]}`;
+        item.addEventListener('click', () => {
+            excluirAmigo(listaAmigos, index);
+        });
         listaSorteio.appendChild(item);
     });
+}
+
+function excluirAmigo(listaAmigos, index) {
+    listaAmigos.splice(index, 1);
+    document.getElementById('lista-amigos').textContent = listaAmigos.join(', ');
+    document.getElementById('lista-sorteio').textContent = '';
 }
 
 function reiniciar() {
