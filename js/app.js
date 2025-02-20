@@ -4,13 +4,17 @@ function adicionar() {
     let nomeAmigo = document.getElementById('nome-amigo').value;
     let lista = document.getElementById('lista-amigos');
 
+    if(!validarAdicao(nomeAmigo)) {
+        return;
+    }
+
     listaAmigos.push(nomeAmigo);
     lista.textContent = listaAmigos.join(', ');
     document.getElementById('nome-amigo').value = '';
 }
 
 function sortear() {
-    if(listaAmigos.length <= 1) {
+    if(listaAmigos.length <= 4) {
         alert('Adicione mais amigos para sortear!');
         return;
     }
@@ -35,4 +39,18 @@ function sortear() {
 function reiniciar() {
     listaAmigos = [];
     document.getElementById('lista-amigos').textContent = '';
+    document.getElementById('lista-sorteio').textContent = '';
+}
+
+function validarAdicao(nomeAmigo) {
+    if(nomeAmigo === '') {
+        alert('Informe o nome do amigo!');
+        return false;
+    }
+
+    if(listaAmigos.includes(nomeAmigo)) {
+        alert('Amigo já adicionado!');
+        return false;
+    }
+    return true;
 }
